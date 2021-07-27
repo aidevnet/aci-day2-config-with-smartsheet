@@ -1,0 +1,27 @@
+---
+- name: ENSURE APPLICATION PROFILE EXISTS
+  aci_ap:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    ap: "{{ item.app }}"
+    #description: "{{ item.app_description }}"
+    state: present
+    validate_certs: no
+  loop: "{{ apps }}"
+
+- name: ENSURE EPG EXISTS
+  aci_epg:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    ap: "{{ item.app }}"
+    epg: "{{ item.epg }}"
+    description: "{{ item.epg_description }}"
+    bd: "{{ item.bd }}"
+    priority: "{{ item.epg_priority }}"
+    state: present
+    validate_certs: no
+  loop: "{{ epgs }}"

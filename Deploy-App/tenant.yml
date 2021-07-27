@@ -1,0 +1,11 @@
+---
+- name: Create Tenant
+  aci_tenant:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    description: "{{ item.tenant_description }}"
+    validate_certs: no
+    state: present
+  loop: "{{ tenants }}"

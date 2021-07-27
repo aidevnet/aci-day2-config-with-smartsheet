@@ -1,0 +1,21 @@
+- name: Configuring Tenant EPG and Contract Relationship
+  hosts: apic1
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Include EPG Variables and Contract Variables
+    include_vars:
+      file: epg-contract-var-ACIEPG2C-000001.yml
+  - name: CREATE CONTRACT TO EPG BINDING
+    aci_epg_to_contract:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      tenant: '{{ item.tenant }}'
+      ap: '{{ item.app }}'
+      epg: '{{ item.epg }}'
+      contract: '{{ item.contract }}'
+      contract_type: '{{ item.contract_type }}'
+      state: present
+      validate_certs: false
+    loop: '{{ epg_to_contracts }}'

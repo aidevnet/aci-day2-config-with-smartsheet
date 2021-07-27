@@ -1,0 +1,26 @@
+- name: Configuring Static Path Binding
+  hosts: apic1
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Include Variables
+    include_vars:
+      file: create-static-path-var-ACISPB-000001.yml
+  - name: CREATE STATIC PATH BINDINGS
+    aci_static_binding_to_epg:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      tenant: '{{ item.tenant }}'
+      ap: '{{ item.ap }}'
+      epg: '{{ item.epg }}'
+      encap_id: '{{ item.encap_id }}'
+      deploy_immediacy: lazy
+      interface_mode: '{{ item.interface_mode }}'
+      interface_type: '{{ item.interface_type }}'
+      pod_id: 1
+      leafs: '{{ item.leaf_range }}'
+      interface: '{{ item.interface }}'
+      validate_certs: false
+      state: present
+    loop: '{{ static_paths }}'

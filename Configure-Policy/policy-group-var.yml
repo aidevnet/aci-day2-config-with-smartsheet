@@ -1,0 +1,33 @@
+# Options for each configuration option
+# lag_type = leaf for Leaf Access Port Policy Group
+# lag_type = link for Port Channel (PC)
+# lag_type = node for Virtual Port Channel (VPC)
+
+
+policy_groups:
+  - lag_type: leaf
+    policy_group_name: TEST_PG1
+    policy_group_description: TEST_PG1 - Interface Policy Group created using Ansible and AO
+    aep: NS_AEP
+    cdp_policy: CDP_ON
+    lldp_policy: LLDP_ON
+    link_level_policy: 10Gig_Auto     
+    mcp_policy: MCP_Enable
+  - lag_type: link
+    policy_group_name: TEST_PG2
+    policy_group_description: TEST_PG2 - Interface Policy Group created using Ansible and AO
+    aep: NS_AEP
+    cdp_policy: CDP_ON
+    lldp_policy: LLDP_ON
+    link_level_policy: 10Gig_Auto
+    port_channel_policy: LACP_ACTIVE
+    mcp_policy: MCP_Enable 
+  - lag_type: node
+    policy_group_name: TEST_PG3
+    policy_group_description: TEST_PG3 - Interface Policy Group created using Ansible and AO
+    aep: NS_AEP
+    cdp_policy: CDP_ON
+    lldp_policy: LLDP_ON
+    link_level_policy: 10Gig_Auto
+    port_channel_policy: LACP_ACTIVE
+    mcp_policy: MCP_Enable 

@@ -1,0 +1,12 @@
+---
+- name: Create VRF
+  aci_vrf:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    vrf: "{{ item.vrf }}"
+    #description: "{{ item.vrf_description }}"
+    state: present
+    validate_certs: no
+  loop: "{{ vrfs }}" 

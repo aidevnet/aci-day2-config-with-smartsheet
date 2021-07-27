@@ -1,0 +1,67 @@
+---
+- name: Create L3 BD
+  aci_bd:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    bd: "{{ item.bd }}"
+    vrf: "{{ item.vrf }}"
+    description: "{{ item.bd_description }}"
+    state: present
+    validate_certs: no
+    l2_unknown_unicast: proxy
+    l3_unknown_multicast: opt-flood 
+    multi_dest: bd-flood
+    arp_flooding: yes
+    enable_routing: "{{ item.bd_routing }}"
+    endpoint_move_detect: garp
+  loop: "{{ bds }}"
+  when: item.bd_routing == 'yes'
+
+- name: Create L2 BD
+  aci_bd:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    bd: "{{ item.bd }}"
+    vrf: "{{ item.vrf }}"
+    description: "{{ item.bd_description }}"
+    state: present
+    validate_certs: no
+    l2_unknown_unicast: flood
+    l3_unknown_multicast: opt-flood 
+    multi_dest: bd-flood
+    arp_flooding: yes
+    enable_routing: "{{ item.bd_routing }}"
+    endpoint_move_detect: garp
+  loop: "{{ bds }}"
+  when: item.bd_routing == 'no'
+
+- name: Create BD Subnets
+  aci_bd_subnet:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    bd: "{{ item.bd }}"
+    gateway: "{{ item.bd_gateway }}"
+    mask: "{{ item.bd_mask }}"
+    scope: "{{ item.bd_scope }}"
+    description: "{{ bd_subnet_description }} for {{ item.bd }}"      
+    state: present
+    validate_certs: no
+  loop: "{{ bd_subnets|default([]) }}"
+
+- name: Associate BD to L3OUT
+  aci_bd_to_l3out:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"
+    tenant: "{{ item.tenant }}"
+    bd: "{{ item.bd }}"
+    l3out: "{{ item.bd_l3out }}"       
+    state: present
+    validate_certs: no
+  loop: "{{ bd_l3out|default([]) }}"

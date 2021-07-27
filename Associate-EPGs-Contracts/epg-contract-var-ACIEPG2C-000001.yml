@@ -1,0 +1,6 @@
+epg_to_contracts:
+- tenant: APIC1-TENANT1-TEST01
+  app: APIC1-TENANT1-APP01
+  epg: APIC1-TENANT1-EPG01
+  contract: APIC1-TENANT1-CONTRACT01
+  contract_type: provider

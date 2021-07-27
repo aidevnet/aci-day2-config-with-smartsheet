@@ -1,0 +1,25 @@
+---
+- name: CREATE ACI DOMAINS
+  aci_domain:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"   
+    domain: "{{ item.domain }}"
+    domain_type: "{{ item.domain_type }}"
+    validate_certs: no
+    state: present
+  loop: "{{ domains }}"
+
+- name: CREATE EPG TO DOMAIN BINDINGS
+  aci_epg_to_domain:
+    hostname: "{{ aci_hostname }}"
+    username: "{{ aci_username }}"
+    password: "{{ aci_password }}"    
+    tenant: "{{ item.tenant }}"
+    ap: "{{ item.app }}"
+    epg: "{{ item.epg }}"
+    domain: "{{ item.domain }}"
+    domain_type: "{{ item.domain_type }}"
+    validate_certs: no
+    state: present
+  loop: "{{ epg_to_domain }}"

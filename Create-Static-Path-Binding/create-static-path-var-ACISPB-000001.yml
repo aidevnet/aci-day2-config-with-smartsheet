@@ -1,0 +1,9 @@
+static_paths:
+- tenant: APIC1-TENANT1-TEST01
+  ap: APIC1-TENANT1-APP01
+  epg: APIC1-TENANT1-EPG01
+  encap_id: 112
+  interface_mode: native
+  interface_type: switch_port
+  leaf_range: 101
+  interface: 1/1

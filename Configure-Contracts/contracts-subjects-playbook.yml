@@ -1,0 +1,49 @@
+---
+- name: Configuring Contracts
+  hosts: apic1
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Include Contract and Subject Variables
+    include_vars:
+      file: contracts-subjects-var.yml
+
+  - name: CREATE CONTRACTS
+    aci_contract:
+      hostname: "{{ aci_hostname }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_password }}"
+      tenant: "{{ item.tenant }}"
+      contract: "{{ item.contract }}"
+      scope: "{{ item.contract_scope }}"
+      description: "{{ item.contract_description }}"
+      state: present
+      validate_certs: no
+    loop: "{{ contracts }}"
+
+  - name: CREATE CONTRACT SUBJECTS
+    aci_contract_subject:
+      hostname: "{{ aci_hostname }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_password }}"
+      tenant: "{{ item.tenant }}"
+      contract: "{{ item.contract }}"
+      subject: "{{ item.subject }}"
+      description: "{{ item.subject_description }}"
+      state: present
+      validate_certs: no
+    loop: "{{ contract_subjects }}"
+
+  - name: CREATE CONTRACT TO SUBJECT AND FILTER BINDING
+    aci_contract_subject_to_filter:
+      hostname: "{{ aci_hostname }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_password }}"
+      tenant: "{{ item.tenant }}"
+      contract: "{{ item.contract }}"
+      subject: "{{ item.subject }}"
+      filter: "{{ item.filter }}"
+      state: present
+      validate_certs: no
+    loop: "{{contracts_to_filters}}"

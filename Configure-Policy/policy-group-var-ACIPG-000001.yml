@@ -1,0 +1,30 @@
+policy_groups:
+- lag_type: link
+  policy_group_name: APIC1-PG01
+  policy_group_description: python configured - Interface Policy Group created using
+    Ansible and Python
+  aep: APIC1-ACCESS-ENTITY-PROFILE01
+  cdp_policy: APIC1-CDP-ON
+  lldp_policy: APIC1-LLDP-ON
+  link_level_policy: APIC1-LINK-LEVEL-ON
+  mcp_policy: MCP-ENABLE
+- lag_type: link
+  policy_group_name: TEST_PG2
+  policy_group_description: TEST_PG2 - Interface Policy Group created using Ansible
+    and AO
+  aep: NS_AEP
+  cdp_policy: CDP_ON
+  lldp_policy: LLDP_ON
+  link_level_policy: 10Gig_Auto
+  port_channel_policy: LACP_ACTIVE
+  mcp_policy: MCP_Enable
+- lag_type: node
+  policy_group_name: TEST_PG3
+  policy_group_description: TEST_PG3 - Interface Policy Group created using Ansible
+    and AO
+  aep: NS_AEP
+  cdp_policy: CDP_ON
+  lldp_policy: LLDP_ON
+  link_level_policy: 10Gig_Auto
+  port_channel_policy: LACP_ACTIVE
+  mcp_policy: MCP_Enable

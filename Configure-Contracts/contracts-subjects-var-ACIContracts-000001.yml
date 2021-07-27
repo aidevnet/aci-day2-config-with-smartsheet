@@ -1,0 +1,15 @@
+contracts:
+- tenant: APIC1-TENANT1-TEST01
+  contract: APIC1-TENANT1-CONTRACT01
+  contract_description: MANUALLY CONFIGURED - Contract created using Ansible and Python
+  contract_scope: context
+contract_subjects:
+- tenant: APIC1-TENANT1-TEST01
+  contract: APIC1-TENANT1-CONTRACT01
+  subject: APIC1-TENANT1-CONTRACTSUBJECT01
+  subject_description: Configured by Ansible - Subject created using Ansible and Python
+contracts_to_filters:
+- tenant: APIC1-TENANT1-TEST01
+  contract: APIC1-TENANT1-CONTRACT01
+  subject: APIC1-TENANT1-CONTRACTSUBJECT01
+  filter: APIC1-TENANT1-FILTER01

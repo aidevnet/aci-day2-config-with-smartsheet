@@ -1,0 +1,59 @@
+tenants: 
+  - tenant: Ansible_01  
+    tenant_description: Ansible_01 - Tenant Created using Ansible and AO
+
+vrfs: 
+  - tenant: Ansible_01
+    vrf: zone_01_vrf
+    vrf_description: zone_01_vrf - VRF Created using Ansible and AO
+
+# bd_routing = yes, no
+bds: 
+  - tenant: Ansible_01
+    vrf: zone_01_vrf
+    bd: app_02_bd_01
+    bd_description: app_02_bd_01 - BD Created using Ansible and AO
+    bd_routing: 'yes'
+
+# bd_scope = public, private, shared. To add multiple scope use -  [private, shared]
+# bd_mask = For IPv4 addresses, accepted values range between 0 and 32.
+# bd_mask = For IPv6 addresses, accepted Values range between 0 and 128
+bd_subnets:
+  - tenant: Ansible_01
+    bd: app_02_bd_01
+    bd_gateway: 10.1.101.1
+    bd_mask: 24
+    bd_scope: public
+bd_subnet_description: Subnet Created Using Ansible
+
+bd_l3out:
+  - tenant: Ansible_01
+    bd: app_02_bd_01
+    bd_l3out: test_l3out
+
+apps: 
+  - tenant: Ansible_01
+    app: app_02    
+    app_description: app_02 - Application Profile Created using Ansible and AO
+
+# epg_priority = level1, level2, level3, unspecified
+epgs:
+  - tenant: Ansible_01
+    app: app_02
+    epg: app_02_epg_web
+    epg_description: app_02_epg_web  - EPG Created using Ansible and AO
+    bd: app_02_bd_01
+    epg_priority: level3
+
+# domain_type = l2dom, l3dom, phys, vmm
+domains:
+  - domain: NS_PHY_DOM
+    domain_type: phys  
+
+# domain_type = l2dom, phys, vmm
+epg_to_domain:
+  - tenant: Ansible_01
+    app: app_02
+    epg: app_02_epg_web    
+    domain: NS_PHY_DOM
+    domain_type: phys  

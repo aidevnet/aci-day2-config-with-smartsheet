@@ -1,0 +1,18 @@
+# Options for each configuration option
+# leaf_ID = Valid input includes Node ID for any discovered node/s
+
+leaf_profile:
+  - leaf_profile: leaf201
+    leaf_profile_description: switch profile for node 201
+
+interface_profile:
+  - leaf_interface_profile: leaf201
+    leaf_interface_profile_description: interface profile for node 201
+
+leaf_to_interface_profile:
+  - leaf_profile: leaf201
+    leaf_interface_profile: leaf201
+
+leaf_node_selector:
+  - leaf_profile: leaf201
+    leaf_ID: 201

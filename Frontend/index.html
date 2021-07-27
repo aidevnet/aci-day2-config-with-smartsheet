@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+
+    <title>ACI - Smartsheet Integration</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='Resources/css/stylesheet.css'>
+
+    <script src='Resources/js/scripts.js'></script>
+</head>
+
+
+<body>
+
+
+    <nav class="sidebar small" id="navigation">
+        <div class="sidebar__header">
+            <div class="container" onclick="burger(this)" id="burger">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+        <hr>
+        <ul class="item-small" id="navigation-items">
+            <li class="sidebar__item" onclick="ChangeTab(0)">
+                <div class="icon"><img src="Resources/icons/aci.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Provisioning Start Point</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(1)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Deploy an App</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(2)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Create Static Path Binding</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(3)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Configure Filters</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(4)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Configure Contracts</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(5)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Associate EPGs to Contracts</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(6)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Configure Policy Groups</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(7)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide ">Configure Switch & Interface Profiles</div>
+            </li>
+            <li class="sidebar__item " onclick="ChangeTab(8)">
+                <div class="icon"><img src="Resources/icons/chevron-right-circle.svg" class="icon"></div>
+                <div class="side-bar-text hide">Associate Int to Policy Groups</div>
+            </li>
+        </ul>
+
+        <div class="logo-container">
+            <a href="https://www.cisco.com"><img src="Resources/icons/cisco.svg" class="logo"></a>
+        </div>
+    </nav>
+    <div class="iframe-container">
+        <iframe src="" frameborder="0" width="100%" height="100%" id="iframe">
+        </iframe>
+    </div>
+
+</body>
+
+</html>

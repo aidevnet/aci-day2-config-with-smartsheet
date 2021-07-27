@@ -1,0 +1,51 @@
+- name: Configuring Leaf and Interface Profiles
+  hosts: apic1
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Include Variables
+    include_vars:
+      file: switch-to-interface-profile-var-ACISWInt-000001.yml
+  - name: Creating a Leaf Profile with description
+    aci_switch_policy_leaf_profile:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      leaf_profile: '{{ item.leaf_profile }}'
+      description: '{{ item.leaf_profile_description }}'
+      state: present
+      validate_certs: false
+    loop: '{{ leaf_profile }}'
+  - name: Creating a Interface Profile with description
+    aci_interface_policy_leaf_profile:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      leaf_interface_profile: '{{ item.leaf_interface_profile }}'
+      description: '{{ item.leaf_interface_profile_description }}'
+      state: present
+      validate_certs: false
+    loop: '{{ interface_profile }}'
+  - name: Associating Interface Profile with the Leaf Profile
+    aci_interface_selector_to_switch_policy_leaf_profile:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      leaf_profile: '{{ item.leaf_profile }}'
+      interface_selector: '{{ item.leaf_interface_profile }}'
+      state: present
+      validate_certs: false
+    loop: '{{ leaf_to_interface_profile }}'
+  - name: Associating a Node ID with the leaf profile (w/o policy group)
+    aci_switch_leaf_selector:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      leaf_profile: '{{ item.leaf_profile }}'
+      leaf: '{{ item.leaf_ID }}'
+      leaf_node_blk: '{{ item.leaf_ID }}'
+      from: '{{ item.leaf_ID }}'
+      to: '{{ item.leaf_ID }}'
+      state: present
+      validate_certs: false
+    loop: '{{ leaf_node_selector }}'

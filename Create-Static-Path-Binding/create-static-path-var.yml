@@ -1,0 +1,9 @@
+static_paths:
+  - tenant: Ansible_01
+    ap: app_01
+    epg: app_01_epg_web
+    encap_id: 101
+    interface_mode: trunk
+    interface_type: switch_port
+    leaf_range: '201'
+    interface: '1/21'

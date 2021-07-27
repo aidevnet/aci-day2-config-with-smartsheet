@@ -1,0 +1,10 @@
+all:
+  hosts:
+    APIC1:
+      aci_hostname: apic1
+      aci_username: admin
+      aci_password: password
+    APIC2:
+      aci_hostname: apic2
+      aci_username: admin
+      aci_password: password

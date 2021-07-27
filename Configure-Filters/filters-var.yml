@@ -1,0 +1,20 @@
+# Configuration Options :
+# ether_type = ip
+# ip_protocol = eigrp, egp, icmp, icmpv6, igmp, igp, l2tp, ospfigp, pim, tcp, udp, unspecified
+# port_start =  Any valid UDP or TCP port number
+# port_end =  Any valid UDP or TCP port number
+
+
+filters:
+  - tenant: Ansible_01
+    filter: https
+    filter_description: https - Filter Created using Ansible and AO
+
+filter_entries:
+  - tenant: Ansible_01
+    filter: https
+    entry: https
+    ether_type: ip
+    ip_protocol: tcp
+    port_start: 443
+    port_end: 443

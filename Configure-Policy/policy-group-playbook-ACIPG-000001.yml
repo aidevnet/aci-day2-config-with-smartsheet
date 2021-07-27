@@ -1,0 +1,60 @@
+- name: Configuring Policy Groups
+  hosts: apic1
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Include Variables
+    include_vars:
+      file: policy-group-var-ACIPG-000001.yml
+  - name: Create a Port Channel (PC) Interface Policy Group
+    aci_interface_policy_leaf_policy_group:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      lag_type: '{{ item.lag_type}}'
+      policy_group: '{{ item.policy_group_name}}'
+      description: '{{ item.policy_group_description}}'
+      aep: '{{ item.aep}}'
+      cdp_policy: '{{ item.cdp_policy }}'
+      lldp_policy: '{{ item.lldp_policy }}'
+      link_level_policy: '{{ item.link_level_policy }}'
+      port_channel_policy: '{{ item.port_channel_policy }}'
+      mcp_policy: '{{ item.mcp_policy }}'
+      validate_certs: false
+      state: present
+    loop: '{{ policy_groups }}'
+    when: item.lag_type == 'node'
+  - name: Create a Access Interface Policy Group
+    aci_interface_policy_leaf_policy_group:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      lag_type: '{{ item.lag_type}}'
+      policy_group: '{{ item.policy_group_name}}'
+      description: '{{ item.policy_group_description}}'
+      aep: '{{ item.aep}}'
+      cdp_policy: '{{ item.cdp_policy }}'
+      lldp_policy: '{{ item.lldp_policy }}'
+      link_level_policy: '{{ item.link_level_policy }}'
+      mcp_policy: '{{ item.mcp_policy }}'
+      validate_certs: false
+      state: present
+    loop: '{{ policy_groups }}'
+    when: item.lag_type == 'leaf'
+  - name: Create a Access Interface Policy Group
+    aci_interface_policy_leaf_policy_group:
+      hostname: '{{ aci_hostname }}'
+      username: '{{ aci_username }}'
+      password: '{{ aci_password }}'
+      lag_type: '{{ item.lag_type}}'
+      policy_group: '{{ item.policy_group_name}}'
+      description: '{{ item.policy_group_description}}'
+      aep: '{{ item.aep}}'
+      cdp_policy: '{{ item.cdp_policy }}'
+      lldp_policy: '{{ item.lldp_policy }}'
+      link_level_policy: '{{ item.link_level_policy }}'
+      mcp_policy: '{{ item.mcp_policy }}'
+      validate_certs: false
+      state: present
+    loop: '{{ policy_groups }}'
+    when: item.lag_type == 'link'

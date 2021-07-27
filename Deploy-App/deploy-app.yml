@@ -1,0 +1,30 @@
+---
+- name: ACI Tenant Management
+  hosts: apic1
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Include Variables
+    include_vars:
+      file: app-var-temp.yml
+
+  - name: Create Tenant
+    include_tasks:
+      file: tenant.yml
+
+  - name: Create VRF
+    include_tasks:
+      file: vrf.yml
+
+  - name: Create BD
+    include_tasks:
+      file: bd.yml
+
+  - name: Create ANP and EPGs
+    include_tasks:
+      file: anp-epg.yml    
+
+  - name: Associate EPG to Domain
+    include_tasks:
+      file: epg-domain.yml        

@@ -1,0 +1,44 @@
+tenants:
+- tenant: APIC1-TENANT1-TEST01
+  tenant_description: APIC1-TENANT1-TEST01 - Tenant created using Ansible and Python
+vrfs:
+- tenant: APIC1-TENANT1-TEST01
+  vrf: APIC1-TENANT1-VRF1
+  vrf_description: APIC1-TENANT1-VRF1 - VRF created using Ansible and Python
+bds:
+- tenant: APIC1-TENANT1-TEST01
+  vrf: APIC1-TENANT1-VRF1
+  bd: APIC1-TENANT1-BD1
+  bd_description: default
+  bd_routing: 'yes'
+bd_subnets:
+- tenant: APIC1-TENANT1-TEST01
+  bd: APIC1-TENANT1-BD1
+  bd_gateway: 100.102.3.1
+  bd_mask: 24
+  bd_scope: private
+bd_subnet_description: Subnet Created Using Ansible
+bd_l3out:
+- tenant: APIC1-TENANT1-TEST01
+  bd: APIC1-TENANT1-BD1
+  bd_l3out: test_l3_out
+apps:
+- tenant: APIC1-TENANT1-TEST01
+  app: APIC1-TENANT1-APP01
+  app_description: APIC1-TENANT1-APP01 - App Profile created using Ansible and Python
+epgs:
+- tenant: APIC1-TENANT1-TEST01
+  app: APIC1-TENANT1-APP01
+  epg: APIC1-TENANT1-EPG01
+  epg_description: default
+  bd: APIC1-TENANT1-BD1
+  epg_priority: level3
+domains:
+- domain: phys
+  domain_type: phys
+epg_to_domain:
+- tenant: APIC1-TENANT1-TEST01
+  app: APIC1-TENANT1-APP01
+  epg: APIC1-TENANT1-EPG01
+  domain: phys
+  domain_type: phys

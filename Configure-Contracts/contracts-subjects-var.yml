@@ -1,0 +1,20 @@
+# Options for each configuration option
+# contract_scope = application-profile, context, global, tenant
+
+contracts:
+  - tenant: Ansible_01
+    contract: web
+    contract_description: web - Contract Created using Ansible and AO
+    contract_scope: context
+
+contract_subjects:
+  - tenant: Ansible_01
+    contract: web
+    subject: https
+    subject_description: https - Subject Created using Ansible and AO
+
+contracts_to_filters:
+  - tenant: Ansible_01
+    contract: web
+    subject: https
+    filter: https

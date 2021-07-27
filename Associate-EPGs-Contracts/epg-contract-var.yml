@@ -1,0 +1,9 @@
+# Options for each configuration option
+# contract_type = provider, consumer
+
+epg_to_contracts:
+  - tenant: Ansible_01
+    app: app_02
+    epg: app_02_epg_web
+    contract: web
+    contract_type: provider

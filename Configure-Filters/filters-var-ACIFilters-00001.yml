@@ -1,0 +1,12 @@
+filters:
+- tenant: APIC1-TENANT1-TEST01
+  filter: APIC1-TENANT1-FILTER02
+  filter_description: MANUALLY CONFIGURED - Filter created using Ansible and Python
+filter_entries:
+- tenant: APIC1-TENANT1-TEST01
+  filter: APIC1-TENANT1-FILTER02
+  entry: HTTPS
+  ether_type: ip
+  ip_protocol: tcp
+  port_start: 443
+  port_end: 443

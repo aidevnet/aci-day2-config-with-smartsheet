@@ -1,0 +1,38 @@
+---
+- name: Configuring Filters
+  hosts: apic1
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Include Filter Variables
+    include_vars:
+      file: filters-var--.yml
+
+  - name: CREATE FILTERS
+    aci_filter:
+      hostname: "{{ aci_hostname }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_password }}"
+      tenant: "{{ item.tenant }}"
+      filter: "{{ item.filter }}"
+      description: "{{ item.filter_description }}"
+      state: present
+      validate_certs: no
+    loop: "{{ filters }}"
+
+  - name: CREATE FILTER ENTRIES
+    aci_filter_entry:
+      hostname: "{{ aci_hostname }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_password }}"
+      tenant: "{{ item.tenant }}"
+      filter: "{{ item.filter }}"
+      entry: "{{ item.entry }}"
+      ether_type: "{{ item.ether_type }}"
+      ip_protocol: "{{ item.ip_protocol }}"
+      dst_port_start: "{{ item.port_start }}"
+      dst_port_end: "{{ item.port_end }}"
+      state: present
+      validate_certs: no
+    loop: "{{ filter_entries }}"

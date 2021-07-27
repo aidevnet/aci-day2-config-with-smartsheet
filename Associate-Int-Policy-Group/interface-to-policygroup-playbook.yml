@@ -1,0 +1,26 @@
+---
+# Associating Interface to Policy Groups
+- name: Associating Interface to Policy Groups
+  hosts: apic1
+  connection: local
+  gather_facts: no
+  
+  tasks:
+  - name: Include Variables
+    include_vars:
+      file: interface-to-policygroup-var.yml
+
+  - name: Associating Interface Selector to Policy Group
+    aci_access_port_to_interface_policy_leaf_profile:
+      hostname: "{{ aci_hostname }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_password }}"
+      leaf_interface_profile: "{{ item.leaf_interface_profile }}"
+      access_port_selector: "{{ item.access_port_selector }}"
+      leaf_port_blk: "{{ item.leaf_port_blk }}"
+      from_port: "{{ item.from_port }}"
+      to_port: "{{ item.to_port }}"
+      policy_group: "{{ item.policy_group_name }}"
+      state: present
+      validate_certs: no
+    loop: "{{ interface_to_policy_group }}"

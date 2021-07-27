@@ -1,0 +1,7 @@
+interface_to_policy_group:
+- leaf_interface_profile: APIC1-INT-PROFILE01
+  access_port_selector: Eth1
+  leaf_port_blk: block1
+  from_port: 1
+  to_port: 1
+  policy_group_name: APIC1-PG01
