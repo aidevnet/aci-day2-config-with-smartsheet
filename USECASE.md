@@ -12,4 +12,9 @@ The ACI management simplification with Python use case offers ACI data center ad
 Additional ACI management activities similar to the ones above can be easily created by extending the Python code in this repo.
 
     Technology stack: Python, Ansible, Cisco ACI, REST APIs, Smartsheet API, HTML/CSS, JavaScript
+    
+# DevNet Sandbox
 
+[Cisco ACI reservable sandbox](https://devnetsandbox.cisco.com/RM/Diagram/Index/661da090-c16c-4b8c-95db-1194e461964c?diagramType=Topology)
+
+[Always-on ACI simulator](https://devnetsandbox.cisco.com/RM/Diagram/Index/5a229a7c-95d5-4cfd-a651-5ee9bc1b30e2?diagramType=Topology)
